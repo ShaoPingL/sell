@@ -54,4 +54,7 @@ public class BuyerOrderController {
         return ResultVOUtil.success(map);
     }
     //订单列表
+    public void test(){
+        System.out.println("测试提交");
+    }
 }
