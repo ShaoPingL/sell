@@ -2,6 +2,7 @@ package com.example.sell.DTO;
 
 import com.example.sell.entity.OrderDetail;
 import com.example.sell.utils.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
