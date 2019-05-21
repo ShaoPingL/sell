@@ -1,4 +1,4 @@
-ï»¿package com.example.sell.controller;
+package com.example.sell.controller;
 
 import com.example.sell.DTO.OrderDTO;
 import com.example.sell.VO.ResultVO;
@@ -37,18 +37,18 @@ public class BuyerOrderController {
 
     @Autowired
     private BuyerService buyerService;
-    //åˆ›å»ºè®¢å•
+    //´´½¨¶©µ¥
     @PostMapping("/create")
     public ResultVO<Map<String,String>> create(@Valid OrderForm orderForm, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            log.error("ã€åˆ›å»ºè®¢å•ã€‘å‚æ•°ä¸æ­£ç¡®ï¼ŒorderForm={}",orderForm);
+            log.error("¡¾´´½¨¶©µ¥¡¿²ÎÊý²»ÕýÈ·£¬orderForm={}",orderForm);
             throw new SellException(ResultEnum.PARAM_ERROR.getCode(),
                     bindingResult.getFieldError().getDefaultMessage());
         }
 
         OrderDTO orderDTO = OrderForm2OrderDTOConverter.convert(orderForm);
         if (CollectionUtils.isEmpty(orderDTO.getOrderDetailList())) {
-            log.error("ã€åˆ›å»ºè®¢å•ã€‘è´­ç‰©è½¦ä¸èƒ½ä¸ºç©º");
+            log.error("¡¾´´½¨¶©µ¥¡¿¹ºÎï³µ²»ÄÜÎª¿Õ");
             throw new SellException(ResultEnum.CART_EMPTY);
         }
 
@@ -59,13 +59,13 @@ public class BuyerOrderController {
 
         return ResultVOUtil.success(map);
     }
-    //è®¢å•åˆ—è¡¨
+    //¶©µ¥ÁÐ±í
     @GetMapping("/list")
     public ResultVO<List<OrderDTO>> list(@RequestParam("openid") String openid,
-                                        @RequestParam(value = "page",defaultValue = "0") Integer page,
-                                        @RequestParam(value = "size",defaultValue = "10") Integer size){
+                                         @RequestParam(value = "page",defaultValue = "0") Integer page,
+                                         @RequestParam(value = "size",defaultValue = "10") Integer size){
         if(StringUtils.isEmpty(openid)){
-            log.error("ã€æŸ¥è¯¢è®¢å•åˆ—è¡¨ã€‘openidä¸èƒ½ä¸ºç©º");
+            log.error("¡¾²éÑ¯¶©µ¥ÁÐ±í¡¿openid²»ÄÜÎª¿Õ");
             throw new SellException(ResultEnum.PARAM_ERROR);
         }
         Page<OrderDTO> orderDTOPage = orderService.findList(openid,PageRequest.of(page,size));
@@ -73,21 +73,21 @@ public class BuyerOrderController {
         return ResultVOUtil.success(orderDTOPage.getContent());
     }
 
-    //è®¢å•è¯¦æƒ…
+    //¶©µ¥ÏêÇé
     @GetMapping("/detail")
     public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,@RequestParam("orderId") String orderId){
         if(StringUtils.isEmpty(openid)){
-            log.error("ã€æŸ¥è¯¢è®¢å•åˆ—è¡¨ã€‘openidä¸èƒ½ä¸ºç©º");
+            log.error("¡¾²éÑ¯¶©µ¥ÁÐ±í¡¿openid²»ÄÜÎª¿Õ");
             throw new SellException(ResultEnum.PARAM_ERROR);
         }
         OrderDTO orderDTO = buyerService.findOrderOne(openid,orderId);
         return ResultVOUtil.success(orderDTO);
     }
-    //å–æ¶ˆè®¢å•
+    //È¡Ïû¶©µ¥
     @PostMapping("/cancel")
     public ResultVO cancel (@RequestParam("openid") String openid,@RequestParam("orderId") String orderId){
         if(StringUtils.isEmpty(openid)){
-            log.error("ã€æŸ¥è¯¢è®¢å•åˆ—è¡¨ã€‘openidä¸èƒ½ä¸ºç©º");
+            log.error("¡¾²éÑ¯¶©µ¥ÁÐ±í¡¿openid²»ÄÜÎª¿Õ");
             throw new SellException(ResultEnum.PARAM_ERROR);
         }
         buyerService.cancelOrder(openid,orderId);
