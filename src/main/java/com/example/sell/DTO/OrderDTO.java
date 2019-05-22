@@ -1,7 +1,11 @@
 package com.example.sell.DTO;
 
 import com.example.sell.entity.OrderDetail;
+import com.example.sell.enums.OrderStatusEnum;
+import com.example.sell.enums.PayStatusEnum;
+import com.example.sell.utils.EnumUtil;
 import com.example.sell.utils.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
@@ -53,7 +57,7 @@ public class OrderDTO {
 
     List<OrderDetail> orderDetailList;
 
-/*    @JsonIgnore
+    @JsonIgnore//转json时忽略不传
     public OrderStatusEnum getOrderStatusEnum() {
         return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
     }
@@ -61,5 +65,5 @@ public class OrderDTO {
     @JsonIgnore
     public PayStatusEnum getPayStatusEnum() {
         return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
-    }*/
+    }
 }

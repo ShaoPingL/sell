@@ -8,8 +8,8 @@ import lombok.Getter;
  * @Data:2019\4\18 0018 22:34
  */
 @Getter
-public enum ProductStatusEnum {
-    UP(0, "上架"),
+public enum ProductStatusEnum implements CodeEnum {
+    UP(0, "在架"),
     DOWN(1, "下架")
     ;
     private Integer code;

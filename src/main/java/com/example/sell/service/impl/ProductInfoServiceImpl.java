@@ -44,7 +44,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     @Override
     public ProductInfo findOne(String productId) {
-        return repository.findById(productId).get();
+        return repository.findById(productId).orElse(null);
     }
 
     @Override
@@ -77,5 +77,40 @@ public class ProductInfoServiceImpl implements ProductInfoService {
             productInfo.setProductStock(result);
             this.save(productInfo);
         }
+    }
+
+    /**
+     * 上架
+     * @param productId
+     * @return
+     */
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = repository.findById(productId).orElse(null);
+        if(productInfo == null){
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if(productInfo.getProductStatus() == ProductStatusEnum.UP.getCode()){
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return repository.save(productInfo);
+    }
+    /**
+     * 下架
+     * @param productId
+     * @return
+     */
+    @Override
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = repository.findById(productId).orElse(null);
+        if(productInfo == null){
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if(productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()){
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        return repository.save(productInfo);
     }
 }
