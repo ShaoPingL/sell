@@ -14,6 +14,7 @@ import com.example.sell.repository.OrderDetailRepository;
 import com.example.sell.repository.OrderMasterRepository;
 import com.example.sell.service.OrderService;
 import com.example.sell.service.ProductInfoService;
+import com.example.sell.service.WebSocket;
 import com.example.sell.utils.KeyUtail;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.mapping.Collection;
@@ -47,6 +48,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductInfoService productInfoService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -85,6 +89,9 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(),e.getProductQuantity())
         ).collect(Collectors.toList());
         productInfoService.decreaseStock(cartDTOList);
+
+        //发送websocket 消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
