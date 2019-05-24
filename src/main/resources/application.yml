@@ -35,9 +35,11 @@ wechat:
   keyPath: /var/weixin_cert/h5.p12
   ##异步通知支付状态地址
   notifyUrl: 127.0.0.1:8080/sell/pay/notify
+  templateId:
+    orderStatus: Oj3nOk3RKsvSnb2VOzY8PMqTHy_vY9kcfMrmUT_AopE
 projecturl:
-  sell: http://m4wwmu.natappfree.cc
+  sell: http://i5p6q6.natappfree.cc
   ##公众号获取opneid地址
-  wechatMpAuthorize: http://m4wwmu.natappfree.cc
+  wechatMpAuthorize: http://i5p6q6.natappfree.cc
   ##开放号获取opneid地址
-  wechatOpenAuthorize: http://m4wwmu.natappfree.cc
+  wechatOpenAuthorize: http://i5p6q6.natappfree.cc

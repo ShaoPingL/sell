@@ -4,6 +4,8 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  * @Author: ShaoPing
  * @Data:2019\5\20 0020 11:44
@@ -53,5 +55,6 @@ public class WechatAccountConfig {
      */
     private String notifyUrl;
 
+    private Map<String,String> templateId;
 
 }
