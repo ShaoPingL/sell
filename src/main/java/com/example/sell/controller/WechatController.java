@@ -1,5 +1,6 @@
 package com.example.sell.controller;
 
+import com.example.sell.config.ProjectUrlConfig;
 import com.example.sell.enums.ResultEnum;
 import com.example.sell.exception.SellException;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,15 @@ public class WechatController {
     @Autowired
     private WxMpService wxMpService;
 
+    @Autowired
+    private WxMpService wxOpenService;
+
+    @Autowired
+    private ProjectUrlConfig projectUrlConfig;
+
     @GetMapping("authorize")
     public String authorize(@RequestParam("returnUrl") String returnUrl){
-        String url = "http://arzf8e.natappfree.cc/sell/wechat/userInfo";
+        String url = projectUrlConfig.getWechatMpAuthorize()+"/sell/wechat/userInfo";
         String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(returnUrl));
         return "redirect:"+ redirectUrl;
     }
@@ -39,7 +46,7 @@ public class WechatController {
     @GetMapping("userInfo")
     public String userInfo(@RequestParam("code")String code,
                          @RequestParam("state")String returnUrl){
-        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
+        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = null;
         try {
             wxMpOAuth2AccessToken = wxMpService.oauth2getAccessToken(code);
         } catch (WxErrorException e) {
@@ -50,5 +57,28 @@ public class WechatController {
         String openid = wxMpOAuth2AccessToken.getOpenId();
         return "redirect:"+returnUrl+"?openid="+openid;
 
+    }
+
+    @GetMapping("/qrAuthorize")
+    public String qrAuthorize(@RequestParam("returnUrl") String returnUrl) {
+        String url = projectUrlConfig.getWechatOpenAuthorize() + "/sell/wechat/qrUserInfo";
+        String redirectUrl = wxOpenService.buildQrConnectUrl(url, WxConsts.QrConnectScope.SNSAPI_LOGIN, URLEncoder.encode(returnUrl));
+        return "redirect:" + redirectUrl;
+    }
+
+    @GetMapping("/qrUserInfo")
+    public String qrUserInfo(@RequestParam("code") String code,
+                             @RequestParam("state") String returnUrl) {
+        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = new WxMpOAuth2AccessToken();
+        try {
+            wxMpOAuth2AccessToken = wxOpenService.oauth2getAccessToken(code);
+        } catch (WxErrorException e) {
+            log.error("【微信网页授权】{}", e);
+            throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(), e.getError().getErrorMsg());
+        }
+        log.info("wxMpOAuth2AccessToken={}", wxMpOAuth2AccessToken);
+        String openId = wxMpOAuth2AccessToken.getOpenId();
+
+        return "redirect:" + returnUrl + "?openid=" + openId;
     }
 }

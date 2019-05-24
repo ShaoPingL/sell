@@ -32,6 +32,7 @@ public class SellerCategoryController {
     @GetMapping("/list")
     public ModelAndView list(Map<String,Object> map){
         List<ProductCategory> productCategoryList = categoryService.findAll();
+        productCategoryList.forEach((obj) -> System.out.println(obj.getCategoryName()+";"));
         map.put("categoryList",productCategoryList);
         return new ModelAndView("category/list",map);
     }

@@ -7,6 +7,9 @@ spring:
 #    url: jdbc:mysql://192.168.199.102:3306/sell?charset=utf8mb4&useSSL=false
 #    username: root
 #    password: 123456
+  redis:
+    host: 127.0.0.1
+    prot: 6379
   jpa:
     show-sql: true
     hibernate:
@@ -19,5 +22,22 @@ server:
   servlet:
     context-path: /sell
 wechat:
+  ##公众平台
   mpAppId: wxe6c92f7cf33a068f
   mpAppSecret: fd8b49ed13ae9f0cc3fe894e13980575
+  ##开放平台
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+  ##商户
+  mchId: 1483469312
+  mchKey: 06C56A89949D617xxxxxxxxxxx
+  ##商户证书地址
+  keyPath: /var/weixin_cert/h5.p12
+  ##异步通知支付状态地址
+  notifyUrl: 127.0.0.1:8080/sell/pay/notify
+projecturl:
+  sell: http://m4wwmu.natappfree.cc
+  ##公众号获取opneid地址
+  wechatMpAuthorize: http://m4wwmu.natappfree.cc
+  ##开放号获取opneid地址
+  wechatOpenAuthorize: http://m4wwmu.natappfree.cc
