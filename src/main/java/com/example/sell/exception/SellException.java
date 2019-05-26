@@ -1,11 +1,13 @@
 package com.example.sell.exception;
 
 import com.example.sell.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * @Author: ShaoPing
  * @Data:2019\4\27 0027 14:54
  */
+@Getter
 public class SellException extends RuntimeException {
     private Integer code;
 

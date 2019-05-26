@@ -6,7 +6,7 @@ import java.util.Random;
  * @Author: ShaoPing
  * @Data:2019\4\27 0027 16:11
  */
-public class KeyUtail {
+public class KeyUtil {
 
     /**
      * 生成唯一的主键

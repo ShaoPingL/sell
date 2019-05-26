@@ -2,16 +2,16 @@ package com.example.sell.controller;
 
 import com.example.sell.entity.ProductCategory;
 import com.example.sell.entity.ProductInfo;
-import com.example.sell.enums.ResultEnum;
 import com.example.sell.exception.SellException;
 import com.example.sell.form.ProductForm;
 import com.example.sell.service.CategoryService;
 import com.example.sell.service.ProductInfoService;
-import com.example.sell.utils.KeyUtail;
+import com.example.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -109,6 +109,7 @@ public class SellerProductController {
     }
 
     @PostMapping("/save")
+    @CacheEvict(cacheNames = "product", key="123")
     public ModelAndView save(@Valid ProductForm form, BindingResult bindingResult,Map<String,Object> map){
         if (bindingResult.hasErrors()){
             map.put("mes",bindingResult.getFieldError().getDefaultMessage());
@@ -121,7 +122,7 @@ public class SellerProductController {
                 productInfo = productInfoService.findOne(form.getProductId());
             }else{
                 productInfo = new ProductInfo();
-                form.setProductId(KeyUtail.genUniqueKey());
+                form.setProductId(KeyUtil.genUniqueKey());
             }
             BeanUtils.copyProperties(form,productInfo);
             productInfoService.save(productInfo);

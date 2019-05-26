@@ -15,9 +15,8 @@ import com.example.sell.repository.OrderMasterRepository;
 import com.example.sell.service.OrderService;
 import com.example.sell.service.ProductInfoService;
 import com.example.sell.service.WebSocket;
-import com.example.sell.utils.KeyUtail;
+import com.example.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +27,6 @@ import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
 
-        String orderId = KeyUtail.genUniqueKey();
+        String orderId = KeyUtil.genUniqueKey();
         BigDecimal orderAmount = new BigDecimal(0);
 
         for (OrderDetail orderDetail: orderDTO.getOrderDetailList()) {
@@ -64,13 +62,14 @@ public class OrderServiceImpl implements OrderService {
             ProductInfo productInfo = productInfoService.findOne(orderDetail.getProductId());
             if(productInfo == null){
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+                //throw new ResponseBankException();
             }
             //2.计算总价
             orderAmount = productInfo.getProductPrice()
                     .multiply(new BigDecimal(orderDetail.getProductQuantity()))
                     .add(orderAmount);
             //写入detail
-            orderDetail.setDetailId(KeyUtail.genUniqueKey());
+            orderDetail.setDetailId(KeyUtil.genUniqueKey());
             orderDetail.setOrderId(orderId);
             BeanUtils.copyProperties(productInfo,orderDetail);
             orderDetailRepository.save(orderDetail);
