@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * æ‰‹å·¥æ–¹å¼è·å–openid
  * @Author: ShaoPing
  * @Data:2019\5\18 0018 23:55
  */
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class WeixinController {
     @GetMapping("/auth")
     public void auth(@RequestParam("code") String code) {
-        log.info("½øÈëauth·½·¨¡£¡£¡£");
+        log.info("è¿›å…¥authæ–¹æ³•ã€‚ã€‚ã€‚");
         log.info("code={}", code);
 
 //        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd898fcb01713c658&secret=29d8a650db31472aa87800e3b0d739f2&code=" + code + "&grant_type=authorization_code";
