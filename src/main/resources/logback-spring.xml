@@ -25,7 +25,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
             <!--<fileNamePattern>E:/ideaFile/log/sell/info.%d.log</fileNamePattern>-->
-            <fileNamePattern>/opt/log/sell</fileNamePattern>
+            <fileNamePattern>/opt/log/sell/info.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -43,7 +43,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
             <!--<fileNamePattern>E:/ideaFile/log/sell/error.%d.log</fileNamePattern>-->
-            <fileNamePattern>/opt/log/sell</fileNamePattern>
+            <fileNamePattern>/opt/log/sell/error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
