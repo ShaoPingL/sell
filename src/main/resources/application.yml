@@ -4,17 +4,15 @@ spring:
     url: jdbc:mysql://localhost:3306/sell?charset=utf8mb4&useSSL=false
     username: root
     password: LSP520kk_
-#    url: jdbc:mysql://192.168.199.102:3306/sell?charset=utf8mb4&useSSL=false
-#    username: root
-#    password: 123456
+  #    url: jdbc:mysql://192.168.199.102:3306/sell?charset=utf8mb4&useSSL=false
+  #    username: root
+  #    password: 123456
   redis:
     host: 127.0.0.1
     prot: 6379
-  jpa:
-    show-sql: true
     hibernate:
       use-new-id-generator-mappings: false
-#如果属性为NULL则不参与序列化
+  #如果属性为NULL则不参与序列化
   jackson:
     default-property-inclusion: non_null
 

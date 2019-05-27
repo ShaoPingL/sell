@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!-- 打包时不指定单元测试 -->
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
