@@ -1,0 +1,6 @@
+projecturl:
+  sell: http://118.24.254.22:8080
+  ##公众号获取opneid地址
+  wechatMpAuthorize: http://118.24.254.22:8080
+  ##开放号获取opneid地址
+  wechatOpenAuthorize: http://dt5d87.natappfree.cc
