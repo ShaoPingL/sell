@@ -70,9 +70,9 @@ public class SellerUserController {
 
     }
     //没有商户和开发平台 所以跳转不到登录二维码页面
-    @GetMapping("/qrAuthorize")
-    public ModelAndView qrAuthorize(){
-        return new ModelAndView("common/login");
-    }
+//    @GetMapping("/qrAuthorize")
+//    public ModelAndView qrAuthorize(){
+//        return new ModelAndView("common/login");
+//    }
 
 }

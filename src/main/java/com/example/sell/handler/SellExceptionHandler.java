@@ -32,8 +32,8 @@ public class SellExceptionHandler {
     public ModelAndView handlerAuthorize(){
         log.warn("无权访问");
         //跳转登录页
-        String url = projectUrlConfig.getSell()+"/sell/seller/qrAuthorize";
-        return new ModelAndView("redirect:"+url);
+        //String url = projectUrlConfig.getSell()+"/sell/seller/qrAuthorize";
+        return new ModelAndView("common/login");
     }
 
     @ExceptionHandler(value = SellException.class)

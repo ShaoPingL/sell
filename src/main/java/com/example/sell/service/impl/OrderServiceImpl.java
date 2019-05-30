@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
     private WebSocket webSocket;
 
     @Override
-    @Transactional
+    @Transactional()
     public OrderDTO create(OrderDTO orderDTO) {
 
         String orderId = KeyUtil.genUniqueKey();
