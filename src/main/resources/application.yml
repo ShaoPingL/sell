@@ -15,7 +15,8 @@ spring:
   #如果属性为NULL则不参与序列化
   jackson:
     default-property-inclusion: non_null
-
+  jpa:
+    show-sql: true
 server:
   servlet:
     context-path: /sell
@@ -35,4 +36,9 @@ wechat:
   notifyUrl: 127.0.0.1:8080/sell/pay/notify
   templateId:
     orderStatus: Oj3nOk3RKsvSnb2VOzY8PMqTHy_vY9kcfMrmUT_AopE
-
+projecturl:
+  sell: http://118.24.254.22:8080
+  ##公众号获取opneid地址
+  wechatMpAuthorize: http://118.24.254.22:8080
+  ##开放号获取opneid地址
+  wechatOpenAuthorize: http://dt5d87.natappfree.cc
