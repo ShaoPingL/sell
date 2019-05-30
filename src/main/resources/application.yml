@@ -16,7 +16,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
   jpa:
-    show-sql: true
+    show-sql: false
 server:
   servlet:
     context-path: /sell

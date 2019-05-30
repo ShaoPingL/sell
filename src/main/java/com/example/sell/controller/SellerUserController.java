@@ -7,6 +7,7 @@ import com.example.sell.entity.SellerInfo;
 import com.example.sell.enums.ResultEnum;
 import com.example.sell.service.SellerService;
 import com.example.sell.utils.CookieUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RequestMapping("/seller")
 @RestController
+@Slf4j
 public class SellerUserController {
 
     @Autowired
@@ -50,7 +52,7 @@ public class SellerUserController {
 
         //3.把token存到cookie
         CookieUtil.set(response, CookieConstant.TOKEN,token,expire);
-
+        log.info(projectUrlConfig.getSell());
         return new ModelAndView("redirect:"+projectUrlConfig.getSell()+"/sell/seller/order/list");
     }
 
