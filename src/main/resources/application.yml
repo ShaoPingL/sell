@@ -44,8 +44,8 @@ wechat:
   templateId:
     orderStatus: Oj3nOk3RKsvSnb2VOzY8PMqTHy_vY9kcfMrmUT_AopE
 projecturl:
-  sell: www.shaop.club
+  sell: http://www.shaop.club
   ##公众号获取opneid地址
-  wechatMpAuthorize: www.shaop.club
+  wechatMpAuthorize: http://www.shaop.club
   ##开放号获取opneid地址
   wechatOpenAuthorize: http://dt5d87.natappfree.cc
