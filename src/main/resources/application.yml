@@ -17,9 +17,16 @@ spring:
     default-property-inclusion: non_null
   jpa:
     show-sql: false
+#      #============== kafka ===================
+#      # 指定kafka 代理地址，可以多个
+#  kafka:
+#    bootstrap-servers: 127.0.0.1:9092
+#    consumer:
+#      group-id: test-consumer-group
 server:
   servlet:
     context-path: /sell
+
 wechat:
   ##公众平台
   mpAppId: wxe6c92f7cf33a068f
@@ -37,8 +44,8 @@ wechat:
   templateId:
     orderStatus: Oj3nOk3RKsvSnb2VOzY8PMqTHy_vY9kcfMrmUT_AopE
 projecturl:
-  sell: http://118.24.254.22:8080
+  sell: www.shaop.club
   ##公众号获取opneid地址
-  wechatMpAuthorize: http://118.24.254.22:8080
+  wechatMpAuthorize: www.shaop.club
   ##开放号获取opneid地址
   wechatOpenAuthorize: http://dt5d87.natappfree.cc
