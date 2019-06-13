@@ -37,7 +37,8 @@ public class SellerUserController {
     private ProjectUrlConfig projectUrlConfig;
 
     @GetMapping("/login")
-    public ModelAndView login(@RequestParam("openId") String openId, HttpServletResponse response, Map<String, Object> map){
+    public ModelAndView login(@RequestParam("openId") String openId, HttpServletResponse response,
+                              HttpServletRequest request, Map<String, Object> map){
         //1.验证openId
         SellerInfo sellerInfo = sellerService.findSellerInfoByOpenid(openId);
         if (sellerInfo == null){
