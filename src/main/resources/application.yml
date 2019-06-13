@@ -26,7 +26,8 @@ spring:
 server:
   servlet:
     context-path: /sell
-
+  tomcat:
+    uri-encoding: UTF-8
 wechat:
   ##公众平台
   mpAppId: wxe6c92f7cf33a068f
